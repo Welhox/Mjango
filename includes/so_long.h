@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/01 17:36:15 by clundber         ###   ########.fr       */
+/*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
+/*   Updated: 2024/02/01 14:19:50 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#ifndef SO_LONG.H
+# define SO_LONG.H
 
-{
-	//hello
-}
-
-
-
-
-
-/* • open, close, read, write,
-malloc, free, perror,
-strerror, exit
-• All functions of the math
-library (-lm compiler option,
-man man 3 math)
-• All functions of the MiniLibX */
+#endif

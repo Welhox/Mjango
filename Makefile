@@ -6,7 +6,7 @@
 #    By: clundber <clundber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2024/01/31 17:06:08 by clundber         ###   ########.fr        #
+#    Updated: 2024/02/01 17:57:29 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,6 @@ COLOUR_RED=\033[0;31m
 COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
-ifeq ($(shell uname), Linux)
-	INCLUDES = -I/usr/include -Imlx
-else
-	INCLUDES = -I/opt/X11/include -Imlx
-endif
-
 # ------------ PROJECT -------#
 NAME = so_long
 LIBFTNAME = libft.a
@@ -28,43 +22,37 @@ LIBFTNAME = libft.a
 # ------------ DIRECTORIES ---#
 LIBFT_DIR = ./libft
 SRCS_DIR = ./srcs
-OBJ_DIR = ./srcs/temp
-MLX_DIR = ./mlx
+#OBJ_DIR = ./srcs/temp
+MLX_DIR = ./MLX42
 
 #------------- SOURCE FILES ------#
 CFILES = $(SRCS_DIR)/so_long.c
 OFILES = $(CFILES:.c=.o)
-MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+LIBS	= $(MLX_DIR)/build/libmlx42.a -ldl -pthread -lm  
+MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+# -lglfw
 
 #--------- FLAGS ----------#
 CC = @cc
-CFLAGS = -Wall -Wextra -Werror -g -I includes
-ifeq ($(shell uname), Linux)
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-else
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-endif
+CFLAGS = -Wall -Wextra -Werror -g -Wunreachable-code -Ofast#-I includes
+HEADERS	:= -I ./includes -I $(MLX_DIR)/include
 
-all: $(MLX_LIB) $(NAME)
+all: $(NAME) libmlx
 
-.c.o:
-	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
+libmlx:
+	@if [ ! -d $(MLX_DIR)/build ]; then cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4; fi;
 
 $(NAME): $(OFILES)
 	@echo "$(COLOUR_BLUE)compiling $(NAME)$(COLOUR_END)"
 	@make -C libft
-	$(CC) $(CFLAGS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) $(MLX_FLAGS)
-	@mkdir -p $(OBJ_DIR)
-	@mv $(OFILES) $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(HEADERS)$(LIBS) $(MLX_LIBS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
 	@echo "$(COLOUR_GREEN)$(NAME) compiled successfully$(COLOUR_END)"
-
-$(MLX_LIB):
-	@make -C $(MLX_DIR)
 
 clean:
 	@echo "$(COLOUR_GREEN)cleaning $(NAME)$(COLOUR_END)"
-	@rm -r -f $(OBJ_DIR) 
+	@rm -f $(OFILES) 
 	@make clean -C libft/
+	@rm -rf $(MLX_DIR)/build
 
 fclean: clean
 	@rm -f $(NAME) 
@@ -72,4 +60,4 @@ fclean: clean
 
 re: fclean $(NAME) 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libmlx

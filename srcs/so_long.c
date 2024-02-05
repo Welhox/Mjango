@@ -6,14 +6,18 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/01 17:36:15 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:39:46 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "/includes/so_long.h"
+
+int	main(int argc, char *argv[])
 
 {
-	//hello
+	
+
+
 }
 
 

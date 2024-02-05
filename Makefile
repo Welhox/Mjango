@@ -6,7 +6,7 @@
 #    By: clundber <clundber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2024/02/01 17:57:29 by clundber         ###   ########.fr        #
+#    Updated: 2024/02/05 15:31:17 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,12 @@ CC = @cc
 CFLAGS = -Wall -Wextra -Werror -g -Wunreachable-code -Ofast#-I includes
 HEADERS	:= -I ./includes -I $(MLX_DIR)/include
 
-all: $(NAME) libmlx
+all: libmlx $(NAME) 
 
 libmlx:
-	@if [ ! -d $(MLX_DIR)/build ]; then cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4; fi;
+	@if [ ! -d $(MLX_DIR)/build ]; then \
+		cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4; \
+	fi
 
 $(NAME): $(OFILES)
 	@echo "$(COLOUR_BLUE)compiling $(NAME)$(COLOUR_END)"
@@ -58,6 +60,6 @@ fclean: clean
 	@rm -f $(NAME) 
 	@rm -f libft/libft.a
 
-re: fclean $(NAME) 
+re: fclean all 
 
 .PHONY: all clean fclean re libmlx

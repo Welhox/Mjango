@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/05 17:06:44 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:17:40 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 # define SO_LONG_H
 
 #include <fcntl.h>
+#include <stdio.h>
 #include "../libft/includes/libft.h"
 
 typedef struct s_struct
 {
 char **map;
-
+int	map_width;
+int	map_depth;
 } t_struct;
+
+void	error_func(t_struct *lstruct, char *err_msg);
+void	check_map(t_struct *lstruct);
+void	get_map(t_struct *lstruct, char **argv);
 
 #endif

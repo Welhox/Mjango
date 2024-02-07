@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/06 13:42:44 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:12:02 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	get_map(t_struct *lstruct, char **argv)
 {
 	int	i;
 	int	fd;
-	char	*map_str;
+	//char	*map_str;
 
-	map_str = NULL;
+	//map_str = NULL;
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

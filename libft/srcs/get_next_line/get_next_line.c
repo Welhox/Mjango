@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:47:43 by clundber          #+#    #+#             */
-/*   Updated: 2023/12/14 13:33:15 by welhox           ###   ########.fr       */
+/*   Updated: 2024/02/08 14:01:47 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "get_next_line.h"
+#include "libft.h"
 
 int	gnlinecheck(char *str)
 

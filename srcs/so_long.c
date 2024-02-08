@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/07 11:12:02 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:49:04 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@
 void	get_map(t_struct *lstruct, char **argv)
 
 {
-	int	i;
-	int	fd;
-	//char	*map_str;
+	int		i;
+	int		fd;
+	char	*map_str;
+	//char	ptr;
+	char	*temp;
 
-	//map_str = NULL;
+	temp = NULL;
+	//ptr = NULL;
+	map_str = NULL;
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
@@ -29,7 +33,30 @@ void	get_map(t_struct *lstruct, char **argv)
 		perror("Error");
 		exit (1);
 	}
-	//This needs fixing
+	map_str = get_next_line(fd);
+	if (!map_str)
+		exit(1); // add invalid map etc
+	while (1)
+	{
+		//ptr = &map_str;
+		temp = ft_strjoin(map_str, get_next_line(fd));
+		if (temp != NULL) 
+		{
+			free(map_str);
+			map_str = NULL;
+			map_str = ft_strdup(temp);
+			free (temp);
+			temp = NULL;
+		}
+		else
+			break;
+
+		//free (&ptr);
+	}
+	close (fd);
+	ft_printf("%s", map_str);
+	free (map_str);
+/* 	//This needs fixing
 	lstruct->map = malloc(100);
 		while (i >= 0 && i < 100)
 	{
@@ -39,19 +66,7 @@ void	get_map(t_struct *lstruct, char **argv)
 		i++;
 	}
 
-/* 	while (rd > 0)
-	{
-		rd = read(fd, map_str, 100);
-		map_str[rd] = '\0';
-	} */
-/* 	while (get_next_line(fd))
-		i++; */
-	//close(fd);
-	
-	//fd = open(argv[1], O_RDONLY);
-
-	//lstruct->map[k] = NULL;
-	close(fd);
+	close(fd); */
 	i = 0;
 	while (lstruct->map[i])
 	{
@@ -60,21 +75,6 @@ void	get_map(t_struct *lstruct, char **argv)
 	}
 	ft_printf("\n");
 }
-
-/* int		ft_search(const char *s, int c)
-
-{
-	while (*s != '\0')
-	{
-		if ((char)c == *s)
-			return (1);
-		s++;
-	}
-	if (*s == (char)c)
-		return (1);
-	else
-		return (0);
-} */
 
 void	check_map(t_struct *lstruct)
 
@@ -137,7 +137,7 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}	
 	get_map(&lstruct, argv);
-	check_map(&lstruct);
+	//check_map(&lstruct);
 }
 
 

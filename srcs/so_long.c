@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/09 18:11:56 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:26:02 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	init_struct(t_map  *smap)
 	smap->error = false;
 	smap->p_nbr = 0;
 	smap->c_nbr = 0;
+	smap->c_found = 0;
 	smap->e_nbr = 0;
 	smap->p_pos[0] = 0;
 	smap->p_pos[1] = 0;
+	smap->exit_found = false;
 }
 
 int	main(int argc, char *argv[])

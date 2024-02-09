@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/09 18:54:41 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:49:31 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	collectables;
 t_bool error;
 int	p_nbr;
 int	c_nbr;
+int	c_found;
 int e_nbr;
 int	p_pos[2];
+t_bool exit_found;
 
 } t_map;
 

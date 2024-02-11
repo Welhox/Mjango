@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:50:11 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/09 19:33:51 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:22:29 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,14 @@ void	check_nline(t_map *smap, char *map_str)
 void	get_map(t_map  *smap, char **argv)
 
 {
-	int		i;
+	//int		i;
 	int		fd;
 	char	*map_str;
 	char	buffer[501];
 	int		rd;
 
 	map_str = NULL;
-	i = 0;
+	//i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{

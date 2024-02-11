@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/09 19:49:31 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:05:19 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@ char	*map_append(char *map_str, char *buffer);
 void	init_struct(t_map  *smap);
 
 //	map functions	//
+
 void	check_map(t_map *smap);
 void	get_map(t_map *lsl, char **argv);
 void	map_size(t_map *smap);
 void	map_borders(t_map *smap);
 void	map_icons(t_map *smap);
-int	char_check(char c);
-char **array_copy(char **array);
+int	    char_check(char c);
+char    **array_copy(char **array);
 void	check_path(t_map *smap);
+void	map_name(char **argv);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:50:11 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/11 19:22:29 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:40:46 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ void	map_borders(t_map *smap)
 	{
 		if (smap->map[0][x] != '1')
 			smap->error = true;
-		x++;
-	}
-	x = 0;
-	while (smap->map[0][x])
-	{
 		if (smap->map[y -1][x] != '1')
 			smap->error = true;
 		x++;
@@ -64,88 +59,25 @@ void	map_size(t_map *smap)
 		x = 0;
 		y++;
 	}
-	if (y  < 3 || width < 3)
+	if (y < 3 || width < 3)
 		smap->error = true;
 	smap->map_height = y;
 	smap->map_width = width;
 }
 
-char	*map_append(char *map_str, char *buffer)
-
-{
-	char	*temp;
-
-	temp = NULL;
-	temp = ft_strjoin(map_str, buffer);
-	free (map_str);
-	return (temp);
-}
-
-void	check_nline(t_map *smap, char *map_str)
+int	char_check(char c, char *str)
 
 {
 	int	i;
 
 	i = 0;
-	if (map_str[0] == '\n')
-		smap->error = true;
-	while (map_str[i])
-		i++;
-	if (map_str[i -1] == '\n')
-		smap->error = true;
-	if (ft_strnstr(map_str, "\n\n", ft_strlen(map_str)) != 0)
-		smap->error = true;
-}
-
-void	get_map(t_map  *smap, char **argv)
-
-{
-	//int		i;
-	int		fd;
-	char	*map_str;
-	char	buffer[501];
-	int		rd;
-
-	map_str = NULL;
-	//i = 0;
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Error");
-		exit (1);
-	}
-
-	rd = read(fd, buffer, 500);
-	buffer[rd] = '\0';
-	map_str = ft_strdup(buffer);
-	while (rd != 0) // this needs fixing later, also adding malloc checks & rd fail checks.
-	{
-		rd = read(fd, buffer, 500);
-		buffer[rd] = '\0';
-		map_str = map_append(map_str, buffer);
-	}
-	close (fd);
-	check_nline(smap, map_str);
-	if (smap->error == true)
-		error_func(smap, "map faulty\n"); // add freeing
- 	smap->map = ft_split(map_str, '\n');
-	free(map_str);
-}
-
-int	char_check(char c)
-
-{
-	char	str[6] = "01CEP";
-	int		i;
-
-	i = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
-			return(1);
+			return (1);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 void	map_icons(t_map *smap)
@@ -160,9 +92,9 @@ void	map_icons(t_map *smap)
 		x = 0;
 		while (smap->map[y][x])
 		{
-			if (char_check(smap->map[y][x]) == 0)
+			if (char_check(smap->map[y][x], "01CEP") == 0)
 				smap->error = true;
-			if(smap->map[y][x] == 'P')
+			if (smap->map[y][x] == 'P')
 			{
 				smap->p_nbr++;
 				smap->p_pos[0] = y;
@@ -178,16 +110,23 @@ void	map_icons(t_map *smap)
 	}
 }
 
-void	check_map(t_map  *smap)
+void	check_map(t_map *smap)
 
 {
 	map_size(smap);
+	if (smap->error == true)
+		error_func("map format wrong\n");
 	map_borders(smap);
+	if (smap->error == true)
+		error_func("map borders faulty\n");
 	map_icons(smap);
-	check_path(smap);
-	
+	if (smap->error == true)
+		error_func("map icons not as expected\n");
 	if (smap->p_nbr != 1 || smap->c_nbr < 1 || smap->e_nbr != 1)
 		smap->error = true;
 	if (smap->error == true)
-		error_func(smap, "map faulty\n");
+		error_func("incorrect ammount of characters in map\n");
+	check_path(smap);
+	if (smap->error == true)
+		error_func("No valid path available\n");
 }

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/12 13:21:06 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:14:16 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "../libft/includes/libft.h"
-
+# include "../MLX42/include/MLX42/MLX42.h"
 typedef struct s_struct
 {
 	char	**map;
@@ -31,6 +31,13 @@ typedef struct s_struct
 	int		p_pos[2];
 	t_bool	exit_found;
 }	t_map;
+
+typedef struct s_data
+{
+	void	*mlx_ptr; // MLX pointer
+	//void	*win_ptr; // MLX window pointer
+	//void	*textures[5]; // MLX image pointers
+}	t_data;
 
 void	error_func(char *err_msg);
 char	*map_append(char *map_str, char *buffer);

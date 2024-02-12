@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/12 14:02:57 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:36:18 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char *argv[])
 
 {
 	t_map	smap;
+	t_data	data;
 
 	if (argc != 2)
 	{
@@ -73,6 +74,22 @@ int	main(int argc, char *argv[])
 	if (!smap.map)
 		error_func("malloc fail\n");
 	check_map(&smap);
+
+	//start of MLX shenanigans
+
+	// data initialisation
+	data.mlx_ptr = mlx_init(1500, 1200, "so_long", true);
+	if (!data.mlx_ptr)
+		error_func("some error\n");
+			//also need freeing func
+	
+	//mlx_key_hook(data.mlx_ptr, NULL, NULL);
+	mlx_texture_t *back1 = mlx_load_png("./assets/Clouds/1.png");
+
+	mlx_image_t *img = mlx_texture_to_image(data.mlx_ptr, back1);
+	mlx_image_to_window(data.mlx_ptr, img, 0, 0);
+	mlx_loop(data.mlx_ptr);
+	mlx_terminate(data.mlx_ptr);
 /* 	int	i;
 	i = 0;
 	while (smap.map[i])

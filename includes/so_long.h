@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/12 16:14:16 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:32:25 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,28 @@ typedef struct s_struct
 	t_bool	exit_found;
 }	t_map;
 
+# define TEXTURE_SIZE 64
+//# define texture_height 50
+
 typedef struct s_data
 {
 	void	*mlx_ptr; // MLX pointer
+	int		width;
+	int		height;
+	mlx_image_t *wall_img;
+	mlx_image_t *grass_img;
+
+	mlx_image_t *p_up1_img;
+	mlx_image_t *p_up2_img;
+	
+	mlx_image_t *p_down1_img;
+	mlx_image_t *p_down2_img;
+	
+	mlx_image_t *p_left1_img;
+	mlx_image_t *p_left2_img;
+	
+	mlx_image_t *p_right1_img;
+	mlx_image_t *p_right2_img;
 	//void	*win_ptr; // MLX window pointer
 	//void	*textures[5]; // MLX image pointers
 }	t_data;

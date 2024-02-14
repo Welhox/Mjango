@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/13 18:32:25 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:31:37 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,17 @@ typedef struct s_data
 	void	*mlx_ptr; // MLX pointer
 	int		width;
 	int		height;
+	char	**map;
+	int		c_nbr;
+	int		c_found;
+	int		player_x;
+	int		player_y;
+	int		mvt_count;
+	t_bool	exit_ok;
 	mlx_image_t *wall_img;
 	mlx_image_t *grass_img;
-
+	mlx_image_t *collectable;
+	mlx_image_t *cave;
 	mlx_image_t *p_up1_img;
 	mlx_image_t *p_up2_img;
 	

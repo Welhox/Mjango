@@ -6,7 +6,7 @@
 #    By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2024/02/12 12:14:43 by clundber         ###   ########.fr        #
+#    Updated: 2024/02/16 12:18:31 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ CFILES = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map_check.c $(SRCS_DIR)/map_parse.c $
 OFILES = $(CFILES:.c=.o)
 LIBS	= $(MLX_DIR)/build/libmlx42.a -ldl -pthread -lm  
 MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw #-framework Cocoa -framework OpenGL -framework IOKit
-# -lglfw
 
 #--------- FLAGS ----------#
 CC = @cc

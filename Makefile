@@ -29,11 +29,12 @@ MLX_DIR = ./MLX42
 CFILES = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map_check.c $(SRCS_DIR)/map_parse.c $(SRCS_DIR)/path_check.c
 OFILES = $(CFILES:.c=.o)
 LIBS	= $(MLX_DIR)/build/libmlx42.a
-	ifeq ($(SHELL uname), Darwin)
-MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw #-framework Cocoa -framework OpenGL -framework IOKit
-	else
-MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/User/$(USER)/.brew/opt/glfw/lib" -lglfw -ldl -pthread -lm 
-	endif
+ifeq ($(shell uname), Darwin)
+	MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw #-framework Cocoa -framework OpenGL -framework IOKit
+else
+	MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/User/$(USER)/.brew/opt/glfw/lib" -lglfw -ldl -pthread -lm 
+endif
+
 #--------- FLAGS ----------#
 CC = @cc
 CFLAGS = -Wall -Wextra #-Werror -g -Wunreachable-code -Ofast#-I includes

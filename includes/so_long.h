@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/16 13:58:50 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:53:39 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,23 @@ typedef struct s_data
 	int		player_y;
 	int		mvt_count;
 	t_bool	exit_ok;
+	//mlx_image_t *background[5];
 	mlx_image_t *wall_img;
 	mlx_image_t *grass_img;
 	mlx_image_t *collectable;
 	mlx_image_t *cave;
+
+	mlx_image_t *up[3];
+	mlx_image_t *down[3];
+	mlx_image_t *left[3];
+	mlx_image_t *right[3];
+
 	mlx_image_t *p_up1_img;
 	mlx_image_t *p_up2_img;
-	
 	mlx_image_t *p_down1_img;
 	mlx_image_t *p_down2_img;
-	
 	mlx_image_t *p_left1_img;
 	mlx_image_t *p_left2_img;
-	
 	mlx_image_t *p_right1_img;
 	mlx_image_t *p_right2_img;
 	//void	*win_ptr; // MLX window pointer
@@ -85,4 +89,16 @@ void	reader(int rd, int fd, char *buffer, char **map_str);
 char	*map_append(char *map_str, char *buffer);
 void	check_nline(t_map *smap, char *map_str);
 void	flood_fill(int pos_y, int pos_x, char **map, t_map *smap);
+
+// player functions //
+void	player_up(t_data *data, int pixels);
+void	player_down(t_data *data, int pixels);
+void	player_left(t_data *data, int pixels);
+void	player_right(t_data *data, int pixels);
+
+// rendering //
+void	map_render(t_data *data);
+void	player_render(t_data *data);
+void	image_init(t_data *data);
+
 #endif

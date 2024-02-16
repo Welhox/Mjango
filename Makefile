@@ -1,5 +1,5 @@
 # **************************************************************************** #
-#                                                                              #
+#                                                                               #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
@@ -28,13 +28,16 @@ MLX_DIR = ./MLX42
 #------------- SOURCE FILES ------#
 CFILES = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map_check.c $(SRCS_DIR)/map_parse.c $(SRCS_DIR)/path_check.c
 OFILES = $(CFILES:.c=.o)
-LIBS	= $(MLX_DIR)/build/libmlx42.a -ldl -pthread -lm  
+LIBS	= $(MLX_DIR)/build/libmlx42.a
+	ifeq ($(SHELL uname), Darwin)
 MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw #-framework Cocoa -framework OpenGL -framework IOKit
-
+	else
+MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/User/$(USER)/.brew/opt/glfw/lib" -lglfw -ldl -pthread -lm 
+	endif
 #--------- FLAGS ----------#
 CC = @cc
-CFLAGS = -Wall -Wextra -Werror -g -Wunreachable-code -Ofast#-I includes
-HEADERS	:= -I ./includes -I $(MLX_DIR)/include
+CFLAGS = -Wall -Wextra #-Werror -g -Wunreachable-code -Ofast#-I includes
+HEADERS	:= -I ./includes -I $(MLX_DIR)/include/MLX42/
 
 all: libmlx $(NAME) 
 
@@ -46,9 +49,10 @@ libmlx:
 $(NAME): $(OFILES)
 	@echo "$(COLOUR_BLUE)compiling $(NAME)$(COLOUR_END)"
 	@make -C libft
-	@$(CC) $(CFLAGS) $(HEADERS)$(LIBS) $(MLX_LIBS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(HEADERS) $(LIBS) $(MLX_LIBS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
 	@echo "$(COLOUR_GREEN)$(NAME) compiled successfully$(COLOUR_END)"
 
+# @$(CC) $(CFLAGS) $(HEADERS)$(LIBS) $(MLX_LIBS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
 clean:
 	@echo "$(COLOUR_GREEN)cleaning $(NAME)$(COLOUR_END)"
 	@rm -f $(OFILES) 

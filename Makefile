@@ -27,7 +27,8 @@ MLX_DIR = ./MLX42
 
 #------------- SOURCE FILES ------#
 CFILES = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map_check.c $(SRCS_DIR)/map_parse.c $(SRCS_DIR)/path_check.c \
-	$(SRCS_DIR)/player_mvt.c $(SRCS_DIR)/initial_render.c
+	$(SRCS_DIR)/player_mvt.c $(SRCS_DIR)/initial_render.c $(SRCS_DIR)/player_image.c $(SRCS_DIR)/images.c \
+	$(SRCS_DIR)/player_animation.c
 OFILES = $(CFILES:.c=.o)
 LIBS	= $(MLX_DIR)/build/libmlx42.a
 ifeq ($(shell uname), Darwin)

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/16 16:53:39 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:29:42 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ typedef struct s_struct
 	t_bool	exit_found;
 }	t_map;
 
-# define TEXTURE_SIZE 64
-//# define texture_height 50
+# define TX_SIZE 64
 
 typedef struct s_data
 {
@@ -43,29 +42,21 @@ typedef struct s_data
 	char	**map;
 	int		c_nbr;
 	int		c_found;
-	int		player_x;
-	int		player_y;
+	int		pos_x;
+	int		pos_y;
 	int		mvt_count;
 	t_bool	exit_ok;
+	t_bool	error;
 	//mlx_image_t *background[5];
 	mlx_image_t *wall_img;
 	mlx_image_t *grass_img;
-	mlx_image_t *collectable;
+	mlx_image_t *collect;
 	mlx_image_t *cave;
 
 	mlx_image_t *up[3];
 	mlx_image_t *down[3];
 	mlx_image_t *left[3];
 	mlx_image_t *right[3];
-
-	mlx_image_t *p_up1_img;
-	mlx_image_t *p_up2_img;
-	mlx_image_t *p_down1_img;
-	mlx_image_t *p_down2_img;
-	mlx_image_t *p_left1_img;
-	mlx_image_t *p_left2_img;
-	mlx_image_t *p_right1_img;
-	mlx_image_t *p_right2_img;
 	//void	*win_ptr; // MLX window pointer
 	//void	*textures[5]; // MLX image pointers
 }	t_data;
@@ -91,14 +82,25 @@ void	check_nline(t_map *smap, char *map_str);
 void	flood_fill(int pos_y, int pos_x, char **map, t_map *smap);
 
 // player functions //
-void	player_up(t_data *data, int pixels);
-void	player_down(t_data *data, int pixels);
-void	player_left(t_data *data, int pixels);
-void	player_right(t_data *data, int pixels);
-
+void	player_up(t_data *data);
+void	player_down(t_data *data);
+void	player_left(t_data *data);
+void	player_right(t_data *data);
+void	player_action(t_data *data);
+void	animation_down(t_data *data);
+void	animation_up(t_data *data);
+void	animation_left(t_data *data);
+void	animation_right(t_data *data);
 // rendering //
 void	map_render(t_data *data);
 void	player_render(t_data *data);
+int		map_image_assets(t_data *data);
+int		map_image_terrain(t_data *data);
 void	image_init(t_data *data);
+int		player_image_up(t_data *data);
+int		player_image_down(t_data *data);
+int		player_image_left(t_data *data);
+int		player_image_right(t_data *data);
+void	player_image(t_data *data);
 
 #endif

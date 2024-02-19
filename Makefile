@@ -52,7 +52,7 @@ libmlx:
 $(NAME): $(OFILES)
 	@echo "$(COLOUR_BLUE)compiling $(NAME)$(COLOUR_END)"
 	@make -C libft
-	@$(CC) $(CFLAGS) $(HEADERS) $(LIBS) $(MLX_LIBS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(OFILES)  $(HEADERS) $(LIBS) $(MLX_LIBS) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
 	@echo "$(COLOUR_GREEN)$(NAME) compiled successfully$(COLOUR_END)"
 
 # @$(CC) $(CFLAGS) $(HEADERS)$(LIBS) $(MLX_LIBS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 

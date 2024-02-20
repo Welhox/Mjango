@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:40:22 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/19 16:34:15 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:45:08 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	player_action(t_data *data)
 void	player_up(t_data *data)
 
 {
-	animation_up(data);	
+	int	i;
+
+	i = 8;
+	animation_up(data);
 	if (data->map[data->pos_y - 1][data->pos_x] == '1')
 		return ;
 	data->down[0]->instances->y -= TX_SIZE;

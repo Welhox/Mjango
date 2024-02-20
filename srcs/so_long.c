@@ -6,69 +6,26 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/19 16:35:30 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:13:44 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	error_func(char *err_msg)
+void	init_struct(t_data *data)
 
 {
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(err_msg, 2);
-	exit(1);
-}
-
-void	init_struct(t_map *smap)
-
-{
-	smap->map = NULL;
-	smap->map_height = 0;
-	smap->map_width = 0;
-	smap->error = false;
-	smap->p_nbr = 0;
-	smap->c_nbr = 0;
-	smap->c_found = 0;
-	smap->e_nbr = 0;
-	smap->p_pos[0] = 0;
-	smap->p_pos[1] = 0;
-	smap->exit_found = false;
-}
-
-void	map_name(char **argv)
-
-{
-	int	i;
-
-	i = 0;
-	while (argv[1] && argv[1][i])
-		i++;
-	if (i < 5)
-		error_func("incorrect map name\n");
-	if (i > 4)
-	{
-		if (argv[1][i -1] != 'r' || argv[1][i -2] != 'e' ||
-		argv[1][i -3] != 'b' || argv[1][i -4] != '.')
-		{
-			ft_putstr_fd("Error\n", 2);
-			exit(1);
-		}
-	}
-}
-
-void	data_init(t_data *data, t_map *smap)
-
-{
-	data->mlx_ptr = NULL;
-	data->height = smap->map_height * TX_SIZE;
-	data->width = smap->map_width * TX_SIZE;
-	data->map = array_copy(smap->map);
-	data->pos_x = smap->p_pos[0];
-	data->pos_y = smap->p_pos[1];
-	data->mvt_count = 0;
-	data->c_nbr = smap->c_nbr;
+	data->width = 0;
+	data->height = 0;
+	data->c_nbr = 0;
+	data->p_nbr = 0;
 	data->c_found = 0;
+	data->e_nbr = 0;
+	data->pos_x = 0;
+	data->pos_y = 0;
+	data->mvt_count = 0;
+	data->map = NULL;
+	data->mlx_ptr = NULL;
 	data->exit_ok = false;
 	data->error = false;
 }
@@ -102,39 +59,29 @@ void	key_input(mlx_key_data_t keydata, void *param)
 int	main(int argc, char *argv[])
 
 {
-	t_map	smap;
 	t_data	data;
 
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
-	init_struct(&smap);
-	map_name(argv);
-	get_map(&smap, argv);
-	if (!smap.map)
+	init_struct(&data);
+	argcheck(argv, argc);
+	get_map(&data, argv);
+	if (!data.map)
 		error_func("malloc fail\n");
-	check_map(&smap);
-	data_init(&data, &smap);
+	check_map(&data);
 	data.mlx_ptr = mlx_init(data.width, data.height, "so_long", false);
 	if (!data.mlx_ptr)
-		error_func("some error\n");
-			//also need freeing func
-
+	{
+		ft_arrfree(data.map);
+		error_func("MLX failed to initialise\n");
+	}
+	window_size(&data);
 	image_init(&data);
 	map_render(&data);
-
-	// player rendering
 	player_render(&data);
-	//mlx_hook
 	mlx_key_hook(data.mlx_ptr, &key_input, &data);
-	
+	mlx_close_hook(data.mlx_ptr, &termination, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_terminate(data.mlx_ptr);
-
 	ft_arrfree(data.map);
-	ft_arrfree(smap.map);
 	ft_printf("Great sucess\n");
 }
 

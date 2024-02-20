@@ -6,12 +6,11 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:24:10 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/19 16:02:34 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:05:18 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
 
 int	map_image_terrain(t_data *data)
 
@@ -21,19 +20,19 @@ int	map_image_terrain(t_data *data)
 	temp_img = mlx_load_png("./assets/rock_wall.png");
 	if (!temp_img)
 		return (-1);
-	data->wall_img = mlx_texture_to_image(data->mlx_ptr, temp_img);
-	if (!data->wall_img)
+	data->wall = mlx_texture_to_image(data->mlx_ptr, temp_img);
+	if (!data->wall)
 		return (-1);
 	mlx_delete_texture(temp_img);
-	mlx_resize_image(data->wall_img, TX_SIZE, TX_SIZE);
-	temp_img = mlx_load_png("./assets/grass.png");
+	mlx_resize_image(data->wall, TX_SIZE, TX_SIZE);
+	temp_img = mlx_load_png("./assets/Tile01.png");
 	if (!temp_img)
 		return (-1);
-	data->grass_img = mlx_texture_to_image(data->mlx_ptr, temp_img);
-	if (!data->grass_img)
+	data->floor = mlx_texture_to_image(data->mlx_ptr, temp_img);
+	if (!data->floor)
 		return (-1);
 	mlx_delete_texture(temp_img);
-	mlx_resize_image(data->grass_img, TX_SIZE, TX_SIZE);
+	mlx_resize_image(data->floor, TX_SIZE, TX_SIZE);
 	return (0);
 }
 
@@ -57,7 +56,7 @@ int	map_image_assets(t_data *data)
 		return (-1);
 	mlx_delete_texture(temp_img);
 	return (0);
-} 
+}
 
 void	image_init(t_data *data)
 

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:25:43 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/13 15:14:32 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:23:31 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,36 +40,38 @@ char	**array_copy(char **array)
 	return (new_array);
 }
 
-void	flood_fill(int pos_y, int pos_x, char **map, t_map *smap)
+void	flood_fill(int pos_y, int pos_x, char **map, t_data *data)
 
 {
 	if (map[pos_y][pos_x] == '1' || map[pos_y][pos_x] == '2')
 		return ;
 	if (map[pos_y][pos_x] == 'E')
-		smap->exit_found = true;
+		data->exit_ok = true;
 	if (map[pos_y][pos_x] == 'C')
-		smap->c_found++;
+		data->c_found++;
 	map[pos_y][pos_x] = '2';
-	flood_fill(pos_y +1, pos_x, map, smap);
-	flood_fill(pos_y -1, pos_x, map, smap);
-	flood_fill(pos_y, pos_x +1, map, smap);
-	flood_fill(pos_y, pos_x -1, map, smap);
+	flood_fill(pos_y +1, pos_x, map, data);
+	flood_fill(pos_y -1, pos_x, map, data);
+	flood_fill(pos_y, pos_x +1, map, data);
+	flood_fill(pos_y, pos_x -1, map, data);
 	return ;
 }
 
-void	check_path(t_map *smap)
+void	check_path(t_data *data)
 
 {
 	char	**temp_map;
 
-	temp_map = array_copy(smap->map);
+	temp_map = array_copy(data->map);
 	if (!temp_map)
 	{
-		ft_arrfree(smap->map);
+		ft_arrfree(data->map);
 		error_func("map copy malloc failed\n");
 	}
-	flood_fill(smap->p_pos[0], smap->p_pos[1], temp_map, smap);
-	if (smap->exit_found == false || smap->c_nbr != smap->c_found)
-		smap->error = true;
+	flood_fill(data->pos_y, data->pos_x, temp_map, data);
+	if (data->exit_ok == false || data->c_nbr != data->c_found)
+		data->error = true;
 	ft_arrfree(temp_map);
+	data->exit_ok = false;
+	data->c_found = 0;
 }

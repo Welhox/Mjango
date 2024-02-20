@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:12:29 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/12 14:06:35 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:02:13 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ char	*map_append(char *map_str, char *buffer)
 	return (temp);
 }
 
-void	check_nline(t_map *smap, char *map_str)
+void	check_nline(t_data *data, char *map_str)
 
 {
 	int	i;
 
 	i = 0;
 	if (map_str[0] == '\n')
-		smap->error = true;
+		data->error = true;
 	while (map_str[i])
 		i++;
 	if (map_str[i -1] == '\n')
-		smap->error = true;
+		data->error = true;
 	if (ft_strnstr(map_str, "\n\n", ft_strlen(map_str)) != 0)
-		smap->error = true;
+		data->error = true;
 }
 
 void	reader(int rd, int fd, char *buffer, char **map_str)
@@ -64,7 +64,7 @@ void	reader(int rd, int fd, char *buffer, char **map_str)
 	}
 }
 
-void	get_map(t_map *smap, char **argv)
+void	get_map(t_data *data, char **argv)
 
 {
 	int		fd;
@@ -82,12 +82,12 @@ void	get_map(t_map *smap, char **argv)
 	}
 	reader(rd, fd, buffer, &map_str);
 	close (fd);
-	check_nline(smap, map_str);
-	if (smap->error == true)
+	check_nline(data, map_str);
+	if (data->error == true)
 	{
 		free(map_str);
 		error_func("Excess newlines in map\n");
 	}
-	smap->map = ft_split(map_str, '\n');
+	data->map = ft_split(map_str, '\n');
 	free(map_str);
 }

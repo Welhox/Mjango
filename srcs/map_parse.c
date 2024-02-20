@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:12:29 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 12:02:13 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:21:34 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	reader(int rd, int fd, char *buffer, char **map_str)
 	while (rd != 0)
 	{
 		rd = read(fd, buffer, 500);
-		if (read < 0)
+		if (rd < 0)
 		{
 			free(*map_str);
 			error_func("read failed");

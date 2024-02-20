@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:40:22 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 11:45:08 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:54:58 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	player_action(t_data *data)
 	}
 	if (data->c_found == data->c_nbr)
 	{
-		data->cave->instances->enabled = 1;
+		data->exit->instances->enabled = 1;
 		data->exit_ok = true;
 	}
 	ft_printf("Amount of moves = %d\n", data->mvt_count);
@@ -43,28 +43,30 @@ void	player_action(t_data *data)
 void	player_up(t_data *data)
 
 {
-	int	i;
-
-	i = 8;
 	animation_up(data);
 	if (data->map[data->pos_y - 1][data->pos_x] == '1')
 		return ;
 	data->down[0]->instances->y -= TX_SIZE;
 	data->down[1]->instances->y -= TX_SIZE;
+	data->down[2]->instances->y -= TX_SIZE;
+	data->down[3]->instances->y -= TX_SIZE;
 	data->up[0]->instances->y -= TX_SIZE;
 	data->up[1]->instances->y -= TX_SIZE;
+	data->up[2]->instances->y -= TX_SIZE;
+	data->up[3]->instances->y -= TX_SIZE;
 	data->left[0]->instances->y -= TX_SIZE;
 	data->left[1]->instances->y -= TX_SIZE;
+	data->left[2]->instances->y -= TX_SIZE;
+	data->left[3]->instances->y -= TX_SIZE;
 	data->right[0]->instances->y -= TX_SIZE;
 	data->right[1]->instances->y -= TX_SIZE;
+	data->right[2]->instances->y -= TX_SIZE;
+	data->right[3]->instances->y -= TX_SIZE;
 	data->pos_y--;
 	data->mvt_count++;
 	player_action(data);
 	if (data->map[data->pos_y][data->pos_x] == 'E' && data->exit_ok == true)
-	{
-		ft_printf("YOU WIN!!!!\n");
-		exit (1);
-	}
+		victory(data);
 }
 
 void	player_down(t_data *data)
@@ -75,20 +77,25 @@ void	player_down(t_data *data)
 		return ;
 	data->down[0]->instances->y += TX_SIZE;
 	data->down[1]->instances->y += TX_SIZE;
+	data->down[2]->instances->y += TX_SIZE;
+	data->down[3]->instances->y += TX_SIZE;
 	data->up[0]->instances->y += TX_SIZE;
 	data->up[1]->instances->y += TX_SIZE;
+	data->up[2]->instances->y += TX_SIZE;
+	data->up[3]->instances->y += TX_SIZE;
 	data->left[0]->instances->y += TX_SIZE;
 	data->left[1]->instances->y += TX_SIZE;
 	data->right[0]->instances->y += TX_SIZE;
 	data->right[1]->instances->y += TX_SIZE;
+	data->left[2]->instances->y += TX_SIZE;
+	data->left[3]->instances->y += TX_SIZE;
+	data->right[2]->instances->y += TX_SIZE;
+	data->right[3]->instances->y += TX_SIZE;
 	data->pos_y++;
 	data->mvt_count++;
 	player_action(data);
 	if (data->map[data->pos_y][data->pos_x] == 'E' && data->exit_ok == true)
-	{
-		ft_printf("YOU WIN!!!!\n");
-		exit (1);
-	}
+		victory(data);
 }
 
 void	player_left(t_data *data)
@@ -99,20 +106,25 @@ void	player_left(t_data *data)
 		return ;
 	data->down[0]->instances->x -= TX_SIZE;
 	data->down[1]->instances->x -= TX_SIZE;
+	data->down[2]->instances->x -= TX_SIZE;
+	data->down[3]->instances->x -= TX_SIZE;
 	data->up[0]->instances->x -= TX_SIZE;
 	data->up[1]->instances->x -= TX_SIZE;
+	data->up[2]->instances->x -= TX_SIZE;
+	data->up[3]->instances->x -= TX_SIZE;
 	data->left[0]->instances->x -= TX_SIZE;
 	data->left[1]->instances->x -= TX_SIZE;
 	data->right[0]->instances->x -= TX_SIZE;
 	data->right[1]->instances->x -= TX_SIZE;
+	data->left[2]->instances->x -= TX_SIZE;
+	data->left[3]->instances->x -= TX_SIZE;
+	data->right[2]->instances->x -= TX_SIZE;
+	data->right[3]->instances->x -= TX_SIZE;
 	data->pos_x--;
 	data->mvt_count++;
 	player_action(data);
 	if (data->map[data->pos_y][data->pos_x] == 'E' && data->exit_ok == true)
-	{
-		ft_printf("YOU WIN!!!!\n");
-		exit (1);
-	}
+		victory(data);
 }
 
 void	player_right(t_data *data)
@@ -123,18 +135,23 @@ void	player_right(t_data *data)
 		return ;
 	data->down[0]->instances->x += TX_SIZE;
 	data->down[1]->instances->x += TX_SIZE;
+	data->down[2]->instances->x += TX_SIZE;
+	data->down[3]->instances->x += TX_SIZE;
 	data->up[0]->instances->x += TX_SIZE;
 	data->up[1]->instances->x += TX_SIZE;
+	data->up[2]->instances->x += TX_SIZE;
+	data->up[3]->instances->x += TX_SIZE;
 	data->left[0]->instances->x += TX_SIZE;
 	data->left[1]->instances->x += TX_SIZE;
 	data->right[0]->instances->x += TX_SIZE;
 	data->right[1]->instances->x += TX_SIZE;
+	data->left[2]->instances->x += TX_SIZE;
+	data->left[3]->instances->x += TX_SIZE;
+	data->right[2]->instances->x += TX_SIZE;
+	data->right[3]->instances->x += TX_SIZE;
 	data->pos_x++;
 	data->mvt_count++;
 	player_action(data);
 	if (data->map[data->pos_y][data->pos_x] == 'E' && data->exit_ok == true)
-	{
-		ft_printf("YOU WIN!!!!\n");
-		exit (1);
-	}
+		victory(data);
 }

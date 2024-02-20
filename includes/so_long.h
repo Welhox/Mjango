@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 16:11:13 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:46:27 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ typedef struct s_data
 	mlx_image_t	*wall;
 	mlx_image_t	*floor;
 	mlx_image_t	*collect;
-	mlx_image_t	*cave;
-	mlx_image_t	*up[3];
-	mlx_image_t	*down[3];
-	mlx_image_t	*left[3];
-	mlx_image_t	*right[3];
+	mlx_image_t	*exit;
+	mlx_image_t	*up[5];
+	mlx_image_t	*down[5];
+	mlx_image_t	*left[5];
+	mlx_image_t	*right[5];
 }	t_data;
 
 // argument checking / initialisation //
@@ -86,9 +86,13 @@ int		map_image_assets(t_data *data);
 int		map_image_terrain(t_data *data);
 void	image_init(t_data *data);
 int		player_image_up(t_data *data);
+int		player_image_up2(t_data *data);
 int		player_image_down(t_data *data);
+int		player_image_down2(t_data *data);
 int		player_image_left(t_data *data);
+int		player_image_left2(t_data *data);
 int		player_image_right(t_data *data);
+int		player_image_right2(t_data *data);
 void	player_image(t_data *data);
 void	image_render(t_data *data, int y, int x);
 
@@ -96,5 +100,6 @@ void	image_render(t_data *data, int y, int x);
 
 void	termination(void *param);
 void	error_func(char *err_msg);
+void	victory(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:49:23 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 16:13:15 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:36:25 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@ void	termination(void *param)
 	ft_arrfree(data->map);
 	mlx_terminate(data->mlx_ptr);
 	exit(1);
+}
+
+void	victory(t_data *data)
+
+{
+	ft_arrfree(data->map);
+	mlx_terminate(data->mlx_ptr);
+	ft_printf("********************\n");
+	ft_printf("********************\n");
+	ft_printf("*****YOU WIN!!!*****\n");
+	ft_printf("********************\n");
+	ft_printf("********************\n");
+	exit(0);
 }
 
 void	window_size(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 21:42:44 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:42:12 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,40 @@ void	key_input(mlx_key_data_t keydata, void *param)
 	}
 }
 
+void	collect_inst(t_data *data)
+
+{
+	data->collect[0]->instances->enabled = 0;
+	data->collect[1]->instances->enabled = 0;
+	data->collect[2]->instances->enabled = 0;
+	data->collect[3]->instances->enabled = 0;
+}
+
+void	collect_animation(void *param)
+
+{
+	t_data	*data;
+	static int	i;
+	int			k;
+
+	k = 0;
+	if (!i)
+		i = 0;
+	data = param;
+	while (k < data->c_nbr)
+	{
+		data->collect[0]->instances[k].enabled = 0;
+		data->collect[1]->instances[k].enabled = 0;
+		data->collect[2]->instances[k].enabled = 0;
+		data->collect[3]->instances[k].enabled = 0;
+		data->collect[i / 10]->instances[k].enabled = 1;
+		k++;
+	}
+	i++;
+	if (i >= 40)
+		i = 0;
+}
+
 int	main(int argc, char *argv[])
 
 {
@@ -79,6 +113,7 @@ int	main(int argc, char *argv[])
 	player_render(&data);
 	mlx_key_hook(data.mlx_ptr, &key_input, &data);
 	mlx_close_hook(data.mlx_ptr, &termination, &data);
+	mlx_loop_hook(data.mlx_ptr, &collect_animation, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_terminate(data.mlx_ptr);
 	ft_arrfree(data.map);

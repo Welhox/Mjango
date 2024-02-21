@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 22:46:27 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:55:47 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_data
 	void		*mlx_ptr;
 	mlx_image_t	*wall;
 	mlx_image_t	*floor;
-	mlx_image_t	*collect;
+	mlx_image_t	*collect[5];
 	mlx_image_t	*exit;
 	mlx_image_t	*up[5];
 	mlx_image_t	*down[5];

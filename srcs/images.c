@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:24:10 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 23:29:51 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:24:20 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,39 @@ int	map_image_assets(t_data *data)
 	temp_img = mlx_load_png("./assets/duck/duck1.png");
 	if (!temp_img)
 		return (-1);
-	data->collect = mlx_texture_to_image(data->mlx_ptr, temp_img);
-	mlx_resize_image(data->collect, TX_SIZE, TX_SIZE);
-	if (!data->collect)
+	data->collect[0] = mlx_texture_to_image(data->mlx_ptr, temp_img);
+	mlx_resize_image(data->collect[0], TX_SIZE, TX_SIZE);
+	if (!data->collect[0])
 		return (-1);
 	mlx_delete_texture(temp_img);
+	temp_img = mlx_load_png("./assets/duck/duck2.png");
+	if (!temp_img)
+		return (-1);
+	data->collect[1] = mlx_texture_to_image(data->mlx_ptr, temp_img);
+	mlx_resize_image(data->collect[1], TX_SIZE, TX_SIZE);
+	if (!data->collect[1])
+		return (-1);
+	mlx_delete_texture(temp_img);
+	temp_img = mlx_load_png("./assets/duck/duck3.png");
+	if (!temp_img)
+		return (-1);
+	data->collect[2] = mlx_texture_to_image(data->mlx_ptr, temp_img);
+	mlx_resize_image(data->collect[2], TX_SIZE, TX_SIZE);
+	if (!data->collect[2])
+		return (-1);
+	mlx_delete_texture(temp_img);
+	temp_img = mlx_load_png("./assets/duck/duck4.png");
+	if (!temp_img)
+		return (-1);
+	data->collect[3] = mlx_texture_to_image(data->mlx_ptr, temp_img);
+	mlx_resize_image(data->collect[3], TX_SIZE, TX_SIZE);
+	if (!data->collect[3])
+		return (-1);
+	mlx_delete_texture(temp_img);
+	data->collect[4] = NULL;
+
+
+
 	temp_img = mlx_load_png("./assets/house.png");
 	if (!temp_img)
 		return (-1);

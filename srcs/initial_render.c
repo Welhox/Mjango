@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:53:30 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 23:20:46 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:28:47 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 void	image_render(t_data *data, int y, int x)
 
 {
+	int	i;
+
+	i = -1;
 	mlx_image_to_window(data->mlx_ptr, data->floor,
 		x * TX_SIZE, y * TX_SIZE);
 	if (data->map[y][x] == '1')
 		mlx_image_to_window(data->mlx_ptr, data->wall,
 			(x * TX_SIZE), (y * TX_SIZE));
 	if (data->map[y][x] == 'C')
-		mlx_image_to_window(data->mlx_ptr, data->collect,
-			x * TX_SIZE, y * TX_SIZE);
+	{
+		while(data->collect[++i])
+			mlx_image_to_window(data->mlx_ptr, data->collect[i],
+				x * TX_SIZE, y * TX_SIZE);
+	}
 	else if (data->map[y][x] == 'E')
 	{
 		mlx_image_to_window(data->mlx_ptr, data->exit,

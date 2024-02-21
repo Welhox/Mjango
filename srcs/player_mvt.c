@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:40:22 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/20 22:54:58 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:55:20 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@ void	player_action(t_data *data)
 
 {
 	int	i;
+	int	k;
 
+	k = 0;
 	i = 0;
 	if (data->map[data->pos_y][data->pos_x] == 'C')
 	{
 		data->c_found++;
 		while (i < data->c_nbr)
 		{
-			if (data->collect->instances[i].x == data->pos_x * TX_SIZE
-				&& data->collect->instances[i].y == (data->pos_y) * TX_SIZE)
+			if (data->collect[0]->instances[i].x == data->pos_x * TX_SIZE
+				&& data->collect[0]->instances[i].y == (data->pos_y) * TX_SIZE)
 			{
-				data->collect->instances[i].enabled = 0;
+				while (k < 4)
+					data->collect[k++]->instances[i].z = 2;
 				data->map[data->pos_y][data->pos_x] = '0';
 			}
 			i++;

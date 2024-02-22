@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:09:48 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/22 16:54:09 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:19:34 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	exit_image(t_data *data)
 	while (i < 20)
 	{
 		number = ft_itoa(i +1);
-		path = ft_trijoin("./assets/gravity/gravity", number, ".png");
+		path = ft_trijoin("./assets/Gravity/Gravity", number, ".png");
 		free (number);
 		if (!path || !number)
 			return (-1);
@@ -39,6 +39,7 @@ int	exit_image(t_data *data)
 		mlx_delete_texture(temp_img);
 		i++;
 	}
+	data->exit[20] = NULL;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:40:22 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/22 14:35:47 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:04:15 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	player_action(t_data *data)
 {
 	int	i;
 	int	k;
-	int	b;
 
-	b = 0;
 	k = 0;
 	i = -1;
 	if (data->map[data->pos_y][data->pos_x] == 'C')

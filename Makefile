@@ -29,14 +29,14 @@ MLX_DIR = ./MLX42
 CFILES = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map_check.c $(SRCS_DIR)/map_parse.c $(SRCS_DIR)/path_check.c \
 	$(SRCS_DIR)/player_mvt.c $(SRCS_DIR)/initial_render.c $(SRCS_DIR)/player_image.c $(SRCS_DIR)/player_image2.c \
 	$(SRCS_DIR)/images.c $(SRCS_DIR)/player_animation.c $(SRCS_DIR)/sl_utils.c $(SRCS_DIR)/black_hole.c
-OFILES = $(patsubst $(SRCS_DIR)%.c, $(OBJ_DIR)/%.o, $(CFILES))
+#OFILES = $(patsubst $(SRCS_DIR)%.c, $(OBJ_DIR)/%.o, $(CFILES))
 
-#OFILES = $(CFILES:.c=.o)
+OFILES = $(CFILES:.c=.o)
 #$(OBJ_DIR): 
 #	@mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)%.o : $(SRCS_DIR)/%.c | $(OBJ_DIR)
-	$(CC) -c $< -o $@
+#$(OBJ_DIR)%.o : $(SRCS_DIR)/%.c | $(OBJ_DIR)
+#	$(CC) -c $< -o $@
 
 LIBS	= $(MLX_DIR)/build/libmlx42.a
 

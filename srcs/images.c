@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:24:10 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/21 20:24:20 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:42:43 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	map_image_terrain(t_data *data)
 		return (-1);
 	mlx_delete_texture(temp_img);
 	mlx_resize_image(data->wall, TX_SIZE, TX_SIZE);
-	temp_img = mlx_load_png("./assets/grass.png");
+	temp_img = mlx_load_png("./assets/dirt1.png");
 	if (!temp_img)
 		return (-1);
 	data->floor = mlx_texture_to_image(data->mlx_ptr, temp_img);
@@ -36,7 +36,7 @@ int	map_image_terrain(t_data *data)
 	return (0);
 }
 
-int	map_image_assets(t_data *data)
+int	collect_image1(t_data *data)
 
 {
 	mlx_texture_t	*temp_img;
@@ -57,6 +57,14 @@ int	map_image_assets(t_data *data)
 	if (!data->collect[1])
 		return (-1);
 	mlx_delete_texture(temp_img);
+	return (0);
+}
+
+int	collect_image2(t_data *data)
+
+{
+	mlx_texture_t	*temp_img;
+
 	temp_img = mlx_load_png("./assets/duck/duck3.png");
 	if (!temp_img)
 		return (-1);
@@ -74,24 +82,26 @@ int	map_image_assets(t_data *data)
 		return (-1);
 	mlx_delete_texture(temp_img);
 	data->collect[4] = NULL;
+	return (0);
+}
 
+int	map_image_assets(t_data *data)
 
-
-	temp_img = mlx_load_png("./assets/house.png");
-	if (!temp_img)
+{
+	if (exit_image(data) == -1)
 		return (-1);
-	data->exit = mlx_texture_to_image(data->mlx_ptr, temp_img);
-	if (!data->exit)
+	if (collect_image1(data) == -1)
 		return (-1);
-	mlx_delete_texture(temp_img);
+	if (collect_image2(data) == -1)
+		return (-1);
+	if (map_image_terrain(data) == -1)
+		return (-1);
 	return (0);
 }
 
 void	image_init(t_data *data)
 
 {
-	if (map_image_terrain(data) == -1)
-		data->error = true;
 	if (data->error == false && map_image_assets(data) == -1)
 		data->error = true;
 	if (data->error == false && player_image_up(data) == -1)

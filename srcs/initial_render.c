@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:53:30 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/21 20:28:47 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:45:17 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ void	image_render(t_data *data, int y, int x)
 			(x * TX_SIZE), (y * TX_SIZE));
 	if (data->map[y][x] == 'C')
 	{
-		while(data->collect[++i])
+		while (data->collect[++i])
 			mlx_image_to_window(data->mlx_ptr, data->collect[i],
 				x * TX_SIZE, y * TX_SIZE);
 	}
 	else if (data->map[y][x] == 'E')
 	{
-		mlx_image_to_window(data->mlx_ptr, data->exit,
-			x * TX_SIZE, y * TX_SIZE);
-		data->exit->instances->enabled = 0;
+		while (data->exit[++i])
+		{
+			mlx_image_to_window(data->mlx_ptr, data->exit[i],
+				x * TX_SIZE, y * TX_SIZE);
+			(data->exit[i]->instances->enabled = 0);
+		}
 	}
 }
 
@@ -56,7 +59,7 @@ void	map_render(t_data *data)
 	}
 }
 
-void	player_render(t_data *data)
+void	player_render1(t_data *data)
 
 {
 	mlx_image_to_window(data->mlx_ptr, data->down[0],
@@ -67,7 +70,6 @@ void	player_render(t_data *data)
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
 	mlx_image_to_window(data->mlx_ptr, data->down[3],
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
-
 	mlx_image_to_window(data->mlx_ptr, data->up[0],
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
 	mlx_image_to_window(data->mlx_ptr, data->up[1],
@@ -76,7 +78,12 @@ void	player_render(t_data *data)
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
 	mlx_image_to_window(data->mlx_ptr, data->up[3],
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
+	player_render2(data);
+}
 
+void	player_render2(t_data *data)
+
+{
 	mlx_image_to_window(data->mlx_ptr, data->left[0],
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
 	mlx_image_to_window(data->mlx_ptr, data->left[1],
@@ -85,7 +92,6 @@ void	player_render(t_data *data)
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
 	mlx_image_to_window(data->mlx_ptr, data->left[3],
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
-
 	mlx_image_to_window(data->mlx_ptr, data->right[0],
 		data->pos_x * TX_SIZE, data->pos_y * TX_SIZE);
 	mlx_image_to_window(data->mlx_ptr, data->right[1],

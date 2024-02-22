@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/21 21:42:12 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:46:49 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,10 @@ void	key_input(mlx_key_data_t keydata, void *param)
 	}
 }
 
-void	collect_inst(t_data *data)
-
-{
-	data->collect[0]->instances->enabled = 0;
-	data->collect[1]->instances->enabled = 0;
-	data->collect[2]->instances->enabled = 0;
-	data->collect[3]->instances->enabled = 0;
-}
-
 void	collect_animation(void *param)
 
 {
-	t_data	*data;
+	t_data		*data;
 	static int	i;
 	int			k;
 
@@ -110,20 +101,12 @@ int	main(int argc, char *argv[])
 	window_size(&data);
 	image_init(&data);
 	map_render(&data);
-	player_render(&data);
+	player_render1(&data);
 	mlx_key_hook(data.mlx_ptr, &key_input, &data);
 	mlx_close_hook(data.mlx_ptr, &termination, &data);
 	mlx_loop_hook(data.mlx_ptr, &collect_animation, &data);
+	mlx_loop_hook(data.mlx_ptr, &exit_animation, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_terminate(data.mlx_ptr);
 	ft_arrfree(data.map);
-	ft_printf("Great sucess\n");
 }
-
-/* • open, close, read, write,
-malloc, free, perror,
-strerror, exit
-• All functions of the math
-library (-lm compiler option,
-man man 3 math)
-• All functions of the MiniLibX */

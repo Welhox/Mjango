@@ -22,15 +22,24 @@ LIBFTNAME = libft.a
 # ------------ DIRECTORIES ---#
 LIBFT_DIR = ./libft
 SRCS_DIR = ./srcs
-#OBJ_DIR = ./srcs/temp
+OBJ_DIR = ./srcs/temp
 MLX_DIR = ./MLX42
 
 #------------- SOURCE FILES ------#
 CFILES = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map_check.c $(SRCS_DIR)/map_parse.c $(SRCS_DIR)/path_check.c \
-	$(SRCS_DIR)/player_mvt.c $(SRCS_DIR)/initial_render.c $(SRCS_DIR)/player_image.c $(SRCS_DIR)/images.c \
-	$(SRCS_DIR)/player_animation.c $(SRCS_DIR)/sl_utils.c
-OFILES = $(CFILES:.c=.o)
+	$(SRCS_DIR)/player_mvt.c $(SRCS_DIR)/initial_render.c $(SRCS_DIR)/player_image.c $(SRCS_DIR)/player_image2.c \
+	$(SRCS_DIR)/images.c $(SRCS_DIR)/player_animation.c $(SRCS_DIR)/sl_utils.c $(SRCS_DIR)/black_hole.c
+OFILES = $(patsubst $(SRCS_DIR)%.c, $(OBJ_DIR)/%.o, $(CFILES))
+
+#OFILES = $(CFILES:.c=.o)
+#$(OBJ_DIR): 
+#	@mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)%.o : $(SRCS_DIR)/%.c | $(OBJ_DIR)
+	$(CC) -c $< -o $@
+
 LIBS	= $(MLX_DIR)/build/libmlx42.a
+
 ifeq ($(shell uname), Darwin)
 	MLX_LIBS = -L$(MLX_DIR)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw #-framework Cocoa -framework OpenGL -framework IOKit
 else
@@ -42,7 +51,7 @@ CC = @cc
 CFLAGS = -Wall -Wextra -Werror -g -Wunreachable-code -Ofast#-I includes
 HEADERS	:= -I ./includes -I $(MLX_DIR)/include/MLX42/
 
-all: libmlx $(NAME) 
+all: libmlx $(NAME)
 
 libmlx:
 	@if [ ! -d $(MLX_DIR)/build ]; then \
@@ -55,7 +64,6 @@ $(NAME): $(OFILES)
 	@$(CC) $(CFLAGS) $(OFILES)  $(HEADERS) $(LIBS) $(MLX_LIBS) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
 	@echo "$(COLOUR_GREEN)$(NAME) compiled successfully$(COLOUR_END)"
 
-# @$(CC) $(CFLAGS) $(HEADERS)$(LIBS) $(MLX_LIBS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME) 
 clean:
 	@echo "$(COLOUR_GREEN)cleaning $(NAME)$(COLOUR_END)"
 	@rm -f $(OFILES) 

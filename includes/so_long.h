@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/21 21:55:47 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:08:18 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_data
 	mlx_image_t	*wall;
 	mlx_image_t	*floor;
 	mlx_image_t	*collect[5];
-	mlx_image_t	*exit;
+	mlx_image_t	*exit[21];
 	mlx_image_t	*up[5];
 	mlx_image_t	*down[5];
 	mlx_image_t	*left[5];
@@ -81,7 +81,8 @@ void	animation_right(t_data *data);
 // rendering //
 
 void	map_render(t_data *data);
-void	player_render(t_data *data);
+void	player_render1(t_data *data);
+void	player_render2(t_data *data);
 int		map_image_assets(t_data *data);
 int		map_image_terrain(t_data *data);
 void	image_init(t_data *data);
@@ -95,7 +96,10 @@ int		player_image_right(t_data *data);
 int		player_image_right2(t_data *data);
 void	player_image(t_data *data);
 void	image_render(t_data *data, int y, int x);
-
+int		collect_image1(t_data *data);
+int		collect_image2(t_data *data);
+int		exit_image(t_data *data);
+void	exit_animation(void *param);
 // MLX //
 
 void	termination(void *param);

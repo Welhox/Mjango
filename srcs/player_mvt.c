@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:40:22 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/21 21:55:20 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:35:47 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ void	player_action(t_data *data)
 {
 	int	i;
 	int	k;
+	int	b;
 
+	b = 0;
 	k = 0;
-	i = 0;
+	i = -1;
 	if (data->map[data->pos_y][data->pos_x] == 'C')
 	{
 		data->c_found++;
-		while (i < data->c_nbr)
+		while (++i < data->c_nbr)
 		{
 			if (data->collect[0]->instances[i].x == data->pos_x * TX_SIZE
 				&& data->collect[0]->instances[i].y == (data->pos_y) * TX_SIZE)
@@ -32,14 +34,10 @@ void	player_action(t_data *data)
 					data->collect[k++]->instances[i].z = 2;
 				data->map[data->pos_y][data->pos_x] = '0';
 			}
-			i++;
 		}
 	}
 	if (data->c_found == data->c_nbr)
-	{
-		data->exit->instances->enabled = 1;
 		data->exit_ok = true;
-	}
 	ft_printf("Amount of moves = %d\n", data->mvt_count);
 }
 

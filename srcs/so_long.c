@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:45:45 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/22 14:46:49 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:14:51 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	key_input(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		ft_arrfree(data->map);
+		mlx_close_window(data->mlx_ptr);
 		mlx_terminate(data->mlx_ptr);
 		exit(1);
 	}

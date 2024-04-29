@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:33:40 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/07 15:24:25 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:58:15 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_trijoin(char const *s1, char const *s2, char const *s3)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
+	if (!s1 || !s2 || !s3)
 		return (0);
 	str = malloc ((ft_strlen(s1) + ft_strlen(s2)
 				+ ft_strlen(s3) + 1) * sizeof(char));

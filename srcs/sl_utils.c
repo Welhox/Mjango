@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:49:23 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/22 16:16:57 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:16:10 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	termination(void *param)
 
 	data = param;
 	ft_arrfree(data->map);
+	mlx_close_window(data->mlx_ptr);
 	mlx_terminate(data->mlx_ptr);
 	exit(1);
 }
@@ -27,13 +28,13 @@ void	victory(t_data *data)
 
 {
 	ft_arrfree(data->map);
+	mlx_close_window(data->mlx_ptr);
 	mlx_terminate(data->mlx_ptr);
-	ft_printf("***************************\n");
-	ft_printf("* With a full stomach *****\n");
-	ft_printf("* Mr Purrnauskis plummets *\n");
-	ft_printf("** into the void,was he ***\n");
-	ft_printf("******* fast enough?*******\n");
-	ft_printf("***************************\n");
+	ft_printf("****************************\n");
+	ft_printf("* With a belly filled with *\n");
+	ft_printf("*** ducks, Mr Purrnauskis **\n");
+	ft_printf("* plummets into the void. **\n");
+	ft_printf("****************************\n");
 	ft_printf("FINAL MOVE COUNT = %d\n", data->mvt_count);
 	exit(0);
 }
@@ -47,6 +48,7 @@ void	window_size(t_data *data)
 	mlx_get_monitor_size(0, &s_width, &s_height);
 	if (data->width > s_width || data->height > s_height)
 	{
+		mlx_close_window(data->mlx_ptr);
 		mlx_terminate(data->mlx_ptr);
 		ft_arrfree(data->map);
 		error_func("Map too big for screen\n");

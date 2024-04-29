@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:25:50 by clundber          #+#    #+#             */
-/*   Updated: 2024/02/22 14:08:18 by clundber         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:24:27 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int		collect_image1(t_data *data);
 int		collect_image2(t_data *data);
 int		exit_image(t_data *data);
 void	exit_animation(void *param);
+
 // MLX //
 
 void	termination(void *param);

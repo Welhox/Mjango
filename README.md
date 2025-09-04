@@ -1,13 +1,75 @@
-# So_long(and thanks for the fish)
+# Mjango
 
-My first interactive program, including graphics. 
+> *So long, and thanks for the ducks!*
 
-This project was about creating a simple 2D game using the MLX42 graphics library. 
+My first interactive program with graphics.  
+This project was about creating a simple **2D top-down game** using the **MLX42 graphics library**.  
 
-It involved map parsing, basic animations, game functions and learning how the graphic library works. 
+It involved:
+- Map parsing  
+- Basic animations  
+- Game functions  
+- Learning how the graphics library works  
 
-In the game you play as the interdimensional cat Mjango, who is in quite the pickle. 
-She finds herself in the duck dimension with a empty tummy, and a black hole looming over the horizon. 
-Will she have enough time to eat all the ducks so that she can survive through the black hole?
+---
 
-<img width="1149" alt="image" src="https://github.com/Welhox/so_long/assets/145485650/ebf19d2f-5490-4c2d-94d5-a43023d2cd99">
+## 🎮 The Game
+
+You play as **Mjango**, the interdimensional cat who is in quite the pickle.  
+She finds herself in the **Duck Dimension** with an empty tummy, and a black hole looming on the horizon.  
+
+Your task:
+- Collect all the ducks 🦆  
+- Reach the black hole 🕳️  
+- Escape… if you’re fast (and full) enough!  
+
+---
+
+## 🛠️ Features
+
+- **Top-down perspective** with grid-based movement  
+- **Collectibles** (ducks)  
+- **Exit condition** (black hole)  
+- **Basic animations** for player and environment  
+- **Map parsing** from external `.ber` files  
+
+---
+
+## 🚀 How to Play
+
+1. **Compile the game**:
+   ```bash
+   make
+
+3. **Run with a map file**:
+   ```bash
+   ./mjango maps/example.ber
+
+5. **Controls**:
+   - `WASD` / arrow keys → move Mjango  
+   - `ESC` → quit game  
+
+---
+
+## 📷 Screenshot
+
+<img width="1149" alt="Mjango screenshot" src="https://github.com/Welhox/so_long/assets/145485650/ebf19d2f-5490-4c2d-94d5-a43023d2cd99">
+
+---
+
+## 📚 Learning Outcomes
+
+Through this project I learned:
+- How to work with **MLX42** for graphics  
+- Implementing **basic game logic** and **state machines**  
+- Parsing and validating **map files**  
+- Handling **animations** and **event loops**  
+- Writing my first **interactive graphical program**  
+
+---
+
+## 📝 Notes
+
+- This project was originally named **so_long** as part of the [42 Network](https://42.fr) curriculum.  
+- Renamed to **Mjango** to better reflect the quirky protagonist.  
+- Built entirely in **C** with **MLX42**.  

@@ -50,10 +50,9 @@ Your task:
    - `ESC` → quit game  
 
 ---
+## 📷 Video
 
-## 📷 Screenshot
-
-<img width="1149" alt="Mjango screenshot" src="https://github.com/Welhox/so_long/assets/145485650/ebf19d2f-5490-4c2d-94d5-a43023d2cd99">
+![Mjango](https://github.com/user-attachments/assets/41a29ffa-9ba8-4fe4-8779-d7539946f599)
 
 ---
 
